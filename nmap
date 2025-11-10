@@ -1,0 +1,30 @@
+
+# Install Nmap
+sudo apt-get install nmap
+
+# Basic Scan Using Domain Name
+nmap www.amazon.com
+
+# Scan Using an IP Address
+nmap 192.168.1.1
+
+# Scan Multiple IP Addresses
+nmap 192.168.1.1 192.168.1.2
+
+# Aggressive Scan on a Subnet
+nmap 192.168.3.*
+
+# Hostname from IP
+sudo nmap -sL 192.168.1.1
+
+# Read IP List from File
+nmap -iL file_name.txt
+
+# Firewall Detection Scan
+sudo nmap -sA 192.168.1.1
+
+# Scan for Open Ports & Services
+nmap -sV 192.168.1.1
+
+# Aggressive Scan with OS & Version Detection
+nmap -A 192.168.1.1
