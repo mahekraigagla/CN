@@ -1,0 +1,51 @@
+server    
+
+
+import socket
+
+# Create TCP socket
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Bind to localhost and port
+server_socket.bind(('localhost', 9999))
+server_socket.listen(1)
+
+print("Server is waiting for connection...")
+
+# Accept connection
+conn, addr = server_socket.accept()
+print(f"Connected by {addr}")
+
+# Receive message
+data = conn.recv(1024).decode()
+print("Client says:", data)
+
+# Send reply
+conn.send("Hello Client, message received!".encode())
+
+conn.close()
+server_socket.close()
+
+
+client 
+
+
+import socket
+
+# Create TCP socket
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Connect to server (same host/port)
+client_socket.connect(('localhost', 9999))
+
+# Send message to server
+client_socket.send("Hello Server, this is Client!".encode())
+
+# Receive reply
+reply = client_socket.recv(1024).decode()
+print("Server says:", reply)
+
+client_socket.close()
+
+in terminal 1 python3 server.py
+in terminal 2 python2 client.py
